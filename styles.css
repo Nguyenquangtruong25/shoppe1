@@ -1,0 +1,67 @@
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+.shopee-header {
+  background: linear-gradient(to right, #f53d2d, #f63);
+  color: white;
+  font-size: 14px;
+}
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 20px;
+}
+.top-bar a {
+  color: white;
+  margin: 0 6px;
+  text-decoration: none;
+}
+.main-bar {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+}
+.logo {
+  font-size: 26px;
+  font-weight: bold;
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+}
+.logo::before {
+  content: url('https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/assets/icon-shoppe.06cbd737.svg');
+  margin-right: 8px;
+}
+.search-box {
+  flex: 1;
+  display: flex;
+}
+.search-box input {
+  width: 100%;
+  padding: 8px;
+  border: none;
+  border-radius: 2px 0 0 2px;
+}
+.search-box button {
+  background-color: #fb5533;
+  border: none;
+  padding: 8px 16px;
+  color: white;
+  cursor: pointer;
+  border-radius: 0 2px 2px 0;
+}
+.cart-icon {
+  margin-left: 20px;
+  font-size: 20px;
+  cursor: pointer;
+}
+.search-tags {
+  padding: 0 20px 10px;
+}
+.search-tags a {
+  color: white;
+  margin-right: 10px;
+  text-decoration: none;
+  font-size: 13px;
+}
