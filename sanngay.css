@@ -1,0 +1,85 @@
+body {
+    margin: 0;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: #fff;
+    color: #333;
+}
+
+header img,
+.highlight img,
+.deal img {
+    width: 100%;
+    display: block;
+}
+
+.promo-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    padding: 24px 12px;
+    background-color: #f5f5f5;
+}
+
+.promo-card {
+    width: 165px;
+    height: 165px;
+    border-radius: 12px;
+    padding: 12px;
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.promo-card h3 {
+    margin: 0;
+    font-size: 18px;
+    line-height: 1.2;
+}
+
+.promo-card p {
+    margin: 8px 0 0;
+    font-size: 14px;
+}
+
+.promo-card button {
+    margin-top: auto;
+    padding: 6px 12px;
+    border: none;
+    background-color: #fff;
+    color: #d0011b;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.promo-card.green {
+    background: linear-gradient(135deg, #5bbf4c, #3a9234);
+}
+
+.promo-card.yellow {
+    background: linear-gradient(135deg, #ffb400, #ff8f00);
+}
+
+.promo-card.red {
+    background: linear-gradient(135deg, #ff3b30, #d0011b);
+}
+
+.promo-card.dark-red {
+    background: linear-gradient(135deg, #a60023, #ff5e62);
+}
+
+.promo-card.teal {
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+}
+
+.promo-card.dark {
+    background: linear-gradient(135deg, #5a5a5a, #333);
+}

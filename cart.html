@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopee | Giỏ Hàng</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Cart.css">
+</head>
+<body>
+    <div class="top-bar">
+         <div>
+        <a href="kênh người bán.html">Kênh Người Bán</a> |
+        <a href="#">Tải ứng dụng</a> |
+        <a href="#">Kết nối <span>🔵 🔴</span></a>
+      </div>
+        <span>Thông Báo | Hỗ Trợ | Tiếng Việt | <span class="user">duyle604</span></span>
+    </div>
+    <div class="container">
+        <div class="header">
+            <div class="logo">Shopee | <span>Giỏ Hàng</span></div>
+            <div class="search-bar">
+                <span class="sale-text">SIÊU SALE THƯỞNG HIẾU 50%</span>
+                <input type="text" placeholder="Tìm kiếm trên Shopee...">
+                <button>Tìm</button>
+            </div>
+        </div>
+        <div class="cart-content">
+            <div class="cart-header">
+                <input type="checkbox" id="select-all" onchange="toggleSelectAll()">
+                <span>Sản Phẩm</span>
+                <div class="price">Đơn Giá</div>
+                <div class="quantity">Số Lượng</div>
+                <div class="total">Số Tiền</div>
+                <div class="action">Thao Tác</div>
+            </div>
+            <div class="shop-info">
+                <img src="https://via.placeholder.com/20" alt="Shop Icon">
+                <span>Infunshop</span>
+            </div>
+            <div class="cart-item">
+                <input type="checkbox" class="item-checkbox" onchange="updateTotal()">
+                <img src="https://via.placeholder.com/80" alt="Sản phẩm" class="item-image">
+                <div class="item-details">
+                    <p class="name">Lót chuột ốc tơn, bàn di chuột, mouse pad màu Vệt lửa</p>
+                    <p class="variant">Phân Loại Hàng: -</p>
+                    <p class="discount">Combo khuyến mãi: Mua thêm 3 sản phẩm được giảm 5% ></p>
+                </div>
+                <div class="item-price">
+                    <span class="original-price">485.000 ₫</span>
+                    <span class="discounted-price">476.500 ₫</span>
+                </div>
+                <div class="quantity-control">
+                    <button class="quantity-btn" onclick="updateQuantity(this, -1)" disabled>-</button>
+                    <input type="number" value="1" min="1" class="quantity-input" onchange="updateTotal()">
+                    <button class="quantity-btn" onclick="updateQuantity(this, 1)">+</button>
+                </div>
+                <div class="item-total">476.500 ₫</div>
+                <div class="item-action">
+                    <a href="#" onclick="removeItem(this)" class="delete-btn">Xóa</a>
+                    <a href="#" class="find-similar-btn">Tìm sản phẩm tương tự</a>
+                </div>
+            </div>
+            <div class="voucher-section">
+                <span class="voucher-text">🎟️ Voucher giảm đến 40K</span>
+                <a href="#">Xem thêm voucher</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="footer-actions">
+            <label>
+                <input type="checkbox" id="select-all-footer" onchange="toggleSelectAll()"> Chọn Tất Cả (1)
+            </label>
+            <a href="#" onclick="removeSelected()">Xóa</a>
+            <a href="#">Lưu vào mục Đã thích</a>
+        </div>
+        <div class="footer-right">
+            <div class="voucher">
+                <span>🎟️</span>
+                <a href="#">Shopee Voucher</a>
+            </div>
+            <div class="shopee-xu">
+                <input type="checkbox" disabled>
+                <span>Bạn chưa chọn sản phẩm (0)</span>
+            </div>
+            <div class="total-info">
+                <div class="label">Tổng cộng (0 Sản phẩm):</div>
+                <div class="total">đ0</div>
+            </div>
+            <button class="checkout-btn" onclick="checkout()">Mua Hàng</button>
+        </div>
+    </div>
+
+    <script>
+        function updateQuantity(button, change) {
+            const input = button.parentElement.querySelector('.quantity-input');
+            let quantity = parseInt(input.value) + change;
+            if (quantity < 1) quantity = 1;
+            if (quantity === 1) button.parentElement.querySelector('button:first-child').disabled = true;
+            else button.parentElement.querySelector('button:first-child').disabled = false;
+            input.value = quantity;
+            updateTotal();
+        }
+
+        function removeItem(link) {
+            link.closest('.cart-item').remove();
+            updateTotal();
+        }
+
+        function removeSelected() {
+            const items = document.querySelectorAll('.cart-item');
+            items.forEach(item => {
+                const checkbox = item.querySelector('.item-checkbox');
+                if (checkbox.checked) {
+                    item.remove();
+                }
+            });
+            updateTotal();
+        }
+
+        function toggleSelectAll() {
+            const selectAll = document.getElementById('select-all').checked;
+            const selectAllFooter = document.getElementById('select-all-footer');
+            const checkboxes = document.querySelectorAll('.item-checkbox');
+            checkboxes.forEach(checkbox => checkbox.checked = selectAll);
+            selectAllFooter.checked = selectAll;
+            updateTotal();
+        }
+
+        function updateTotal() {
+            const items = document.querySelectorAll('.cart-item');
+            let total = 0;
+            let selectedCount = 0;
+            items.forEach(item => {
+                const checkbox = item.querySelector('.item-checkbox');
+                if (checkbox.checked) {
+                    selectedCount++;
+                    const price = parseFloat(item.querySelector('.discounted-price')?.textContent.replace(' ₫', '').replace('.', '') || item.querySelector('.item-price').textContent.replace(' ₫', '').replace('.', ''));
+                    const quantity = parseInt(item.querySelector('.quantity-input').value);
+                    item.querySelector('.item-total').textContent = (price * quantity).toLocaleString('vi-VN') + ' ₫';
+                    total += price * quantity;
+                }
+            });
+            document.querySelector('.total').textContent = 'đ' + total.toLocaleString('vi-VN');
+            document.querySelector('.shopee-xu span').textContent = `Bạn chưa chọn sản phẩm (${selectedCount})`;
+            document.querySelector('.total-info .label').textContent = `Tổng cộng (${selectedCount} Sản phẩm):`;
+            document.getElementById('select-all').parentElement.querySelector('span').textContent = `Sản Phẩm (${items.length})`;
+            document.getElementById('select-all-footer').parentElement.textContent = `Chọn Tất Cả (${items.length})`;
+        }
+
+        function checkout() {
+            alert('Chuyển đến trang thanh toán!');
+        }
+    </script>
+</body>
+</html>

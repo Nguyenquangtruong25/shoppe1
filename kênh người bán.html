@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device=width, initial-scale=1.0">
+  <title>Kênh Người Bán - Shopee</title>
+  <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.20.15/babel.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+<link rel="stylesheet" href="kênh người bán.css">
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { useState } = React;
+
+    // Component Header
+    const Header = () => (
+      <header className="bg-white shadow-md p-4 flex justify-between items-center">
+        <div className="flex items-center space-x-3">
+          <img src="https://via.placeholder.com/40?text=Logo" alt="Logo" className="h-10" />
+          <h1 className="text-xl font-bold text-[#333]">Kênh Người Bán</h1>
+          <div className="relative ml-4">
+            <input
+              type="text"
+              placeholder="Tìm kiếm..."
+              className="p-2 border rounded w-64 text-sm border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#f60]"
+            />
+            <i className="fas fa-search absolute right-2 top-2 text-gray-400"></i>
+          </div>
+        </div>
+        <div className="flex items-center space-x-4">
+          <button className="text-[#f60] hover:underline flex items-center">
+            <i className="fas fa-bell mr-1"></i> Thông Báo
+          </button>
+          <button className="text-[#f60] hover:underline flex items-center">
+            <i className="fas fa-comments mr-1"></i> Tin Nhắn
+          </button>
+          <div className="flex items-center space-x-2">
+            <span className="text-sm">duy123866</span>
+            <img src="https://via.placeholder.com/30" alt="Avatar" className="h-8 rounded-full" />
+          </div>
+        </div>
+      </header>
+    );
+
+    // Component Sidebar
+    const Sidebar = () => (
+      <div className="w-64 bg-white shadow-md h-[calc(100vh-64px)] p-4">
+        <ul className="space-y-2">
+          <li className="sidebar-item p-2 rounded cursor-pointer">
+            <i className="fas fa-shopping-cart"></i>
+            <span className="text-sm">Quản Lý Đơn Hàng</span>
+            <span className="ml-2 text-xs bg-gray-200 px-2 rounded">0</span>
+          </li>
+          <li className="sidebar-item p-2 rounded cursor-pointer">
+            <i className="fas fa-box-open"></i>
+            <span className="text-sm">Quản Lý Sản Phẩm</span>
+          </li>
+          <li className="sidebar-item p-2 rounded cursor-pointer">
+            <i className="fas fa-bullhorn"></i>
+            <span className="text-sm">Kenh Marketing</span>
+          </li>
+          <li className="sidebar-item p-2 rounded cursor-pointer">
+            <i className="fas fa-headset"></i>
+            <span className="text-sm">Chăm sóc khách</span>
+          </li>
+          <li className="sidebar-item p-2 rounded cursor-pointer">
+            <i className="fas fa-chart-line"></i>
+            <span className="text-sm">Phân Tích & Báo Cáo</span>
+          </li>
+          <li className="sidebar-item p-2 rounded cursor-pointer">
+            <i className="fas fa-cog"></i>
+            <span className="text-sm">Cài Đặt Tài Khoản</span>
+          </li>
+        </ul>
+      </div>
+    );
+
+    // Component Main Content
+    const MainContent = () => {
+      const [activeTab, setActiveTab] = useState('danhSachCanLam');
+      const [stats, setStats] = useState({
+        doanhSo: 0,
+        luotTruyCap: 0,
+        luotXem: 0,
+        donHang: 0,
+        tyLeChuyenDoi: "0.00%",
+      });
+
+      const saveChanges = () => {
+        alert('Thay đổi đã được lưu!');
+      };
+
+      const tabs = {
+        danhSachCanLam: (
+          <div className="p-4">
+            <h2 className="text-lg font-semibold mb-2">Danh sách căn lăm</h2>
+            <div className="grid grid-cols-5 gap-4 text-center bg-white p-2 rounded border border-gray-200">
+              <button className="p-2 hover:bg-gray-100 rounded">Tất cả <span className="text-xs bg-gray-200 px-1 rounded">0</span></button>
+              <button className="p-2 hover:bg-gray-100 rounded">Chờ Lấy Hàng <span className="text-xs bg-gray-200 px-1 rounded">0</span></button>
+              <button className="p-2 hover:bg-gray-100 rounded">Đã Lấy <span className="text-xs bg-gray-200 px-1 rounded">0</span></button>
+              <button className="p-2 hover:bg-gray-100 rounded">Đơn Trả hàng/Hoàn/Hủy <span className="text-xs bg-gray-200 px-1 rounded">0</span></button>
+              <button className="p-2 hover:bg-gray-100 rounded">Sản Phẩm Bị Khóa <span className="text-xs bg-gray-200 px-1 rounded">0</span></button>
+            </div>
+            <div className="mt-4 p-4 bg-white rounded shadow">
+              <div className="flex justify-between items-center mb-2">
+                <h3 className="text-md font-semibold">Phân Tích Bán Hàng</h3>
+                <button onClick={saveChanges} className="text-[#f60] text-sm hover:underline">Lưu thay đổi</button>
+              </div>
+              <p className="text-sm text-gray-500">Hôm nay 00:00 GMT+7 11:31 (Đã lưu thay đổi số với hôm qua)</p>
+              <div className="grid grid-cols-5 gap-4 mt-4 text-center">
+                <div className="stats-card p-2 rounded">
+                  <p className="text-sm">Doanh số</p>
+                  <p className="text-lg font-bold text-[#f60]">đ{stats.doanhSo}</p>
+                  <p className="text-xs text-red-500">-0.00%</p>
+                </div>
+                <div className="stats-card p-2 rounded">
+                  <p className="text-sm">Lượt truy cập</p>
+                  <p className="text-lg font-bold text-[#f60]">{stats.luotTruyCap}</p>
+                  <p className="text-xs text-red-500">-0.00%</p>
+                </div>
+                <div className="stats-card p-2 rounded">
+                  <p className="text-sm">Lượt xem</p>
+                  <p className="text-lg font-bold text-[#f60]">{stats.luotXem}</p>
+                  <p className="text-xs text-red-500">-0.00%</p>
+                </div>
+                <div className="stats-card p-2 rounded">
+                  <p className="text-sm">Đơn hàng</p>
+                  <p className="text-lg font-bold text-[#f60]">{stats.donHang}</p>
+                  <p className="text-xs text-red-500">-0.00%</p>
+                </div>
+                <div className="stats-card p-2 rounded">
+                  <p className="text-sm">Tỷ lệ chuyển đổi</p>
+                  <p className="text-lg font-bold text-[#f60]">{stats.tyLeChuyenDoi}</p>
+                  <p className="text-xs text-red-500">-0.00%</p>
+                </div>
+              </div>
+              <div className="mt-4">
+                <h3 className="text-md font-semibold mb-2">Danh sách đơn hàng</h3>
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="bg-gray-100">
+                      <th className="p-2 border">Mã Đơn</th>
+                      <th className="p-2 border">Tên Sản Phẩm</th>
+                      <th className="p-2 border">Số Lượng</th>
+                      <th className="p-2 border">Trạng Thái</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className="p-2 border">DH001</td>
+                      <td className="p-2 border">Áo Thun</td>
+                      <td className="p-2 border">1</td>
+                      <td className="p-2 border">Chờ Lấy Hàng</td>
+                    </tr>
+                    <tr>
+                      <td className="p-2 border">DH002</td>
+                      <td className="p-2 border">Quần Jean</td>
+                      <td className="p-2 border">2</td>
+                      <td className="p-2 border">Đã Lấy</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        ),
+        quanLySanPham: (
+          <div className="p-4">
+            <h2 className="text-lg font-semibold mb-2">Quản Lý Sản Phẩm</h2>
+            <div className="mt-4 p-4 bg-white rounded shadow">
+              <button className="shopee-btn p-2 rounded mb-4">Thêm Sản Phẩm Mới</button>
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="bg-gray-100">
+                    <th className="p-2 border">Mã Sản Phẩm</th>
+                    <th className="p-2 border">Tên Sản Phẩm</th>
+                    <th className="p-2 border">Số Lượng</th>
+                    <th className="p-2 border">Giá (VNĐ)</th>
+                    <th className="p-2 border">Trạng Thái</th>
+                    <th className="p-2 border">Hành Động</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td className="p-2 border">SP001</td>
+                    <td className="p-2 border">Áo Thun Trắng</td>
+                    <td className="p-2 border">50</td>
+                    <td className="p-2 border">150,000</td>
+                    <td className="p-2 border">Đang Bán</td>
+                    <td className="p-2 border">
+                      <button className="text-[#f60] hover:underline mr-2">Sửa</button>
+                      <button className="text-red-500 hover:underline">Xóa</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="p-2 border">SP002</td>
+                    <td className="p-2 border">Quần Jean Xanh</td>
+                    <td className="p-2 border">30</td>
+                    <td className="p-2 border">300,000</td>
+                    <td className="p-2 border">Hết Hàng</td>
+                    <td className="p-2 border">
+                      <button className="text-[#f60] hover:underline mr-2">Sửa</button>
+                      <button className="text-red-500 hover:underline">Xóa</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        ),
+        hieuQuaBanHang: (
+          <div className="p-4">
+            <h2 className="text-lg font-semibold mb-2">Hiểu quả bán hàng</h2>
+            <div className="bg-white p-4 rounded shadow">
+              <h3 className="text-md font-semibold mb-2">Biểu đồ Doanh Thu</h3>
+              <canvas id="chart" width="400" height="200"></canvas>
+            </div>
+          </div>
+        ),
+        tinNoiBat: (
+          <div className="p-4">
+            <h2 className="text-lg font-semibold mb-2">Tin Nổi Bật</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="bg-[#f60] text-white p-4 rounded flex items-center justify-between">
+                <div>
+                  <h3 className="text-xl font-bold">GIỚI THIỆU SHOP MỚI</h3>
+                  <p className="text-sm">Nhận ngay 15% giảm giá khi mua sắm lần đầu</p>
+                </div>
+                <img src="https://via.placeholder.com/100x80" alt="Promo" className="h-20" />
+              </div>
+              <div className="bg-[#f60] text-white p-4 rounded flex items-center justify-between">
+                <div>
+                  <h3 className="text-xl font-bold">KHUYẾN MÃI ĐẶC BIỆT</h3>
+                  <p className="text-sm">Giảm 20% cho đơn từ 500k</p>
+                </div>
+                <img src="https://via.placeholder.com/100x80" alt="Promo" className="h-20" />
+              </div>
+            </div>
+          </div>
+        ),
+      };
+
+      return (
+        <div className="flex-1 p-4">
+          <div className="flex space-x-4 border-b mb-4">
+            <button
+              onClick={() => setActiveTab('danhSachCanLam')}
+              className={`pb-2 ${activeTab === 'danhSachCanLam' ? 'border-b-2 border-[#f60] text-[#f60]' : 'text-gray-600'}`}
+            >
+              Danh sách căn lăm
+            </button>
+            <button
+              onClick={() => setActiveTab('quanLySanPham')}
+              className={`pb-2 ${activeTab === 'quanLySanPham' ? 'border-b-2 border-[#f60] text-[#f60]' : 'text-gray-600'}`}
+            >
+              Quản Lý Sản Phẩm
+            </button>
+            <button
+              onClick={() => setActiveTab('hieuQuaBanHang')}
+              className={`pb-2 ${activeTab === 'hieuQuaBanHang' ? 'border-b-2 border-[#f60] text-[#f60]' : 'text-gray-600'}`}
+            >
+              Hiểu quả bán hàng
+            </button>
+            <button
+              onClick={() => setActiveTab('tinNoiBat')}
+              className={`pb-2 ${activeTab === 'tinNoiBat' ? 'border-b-2 border-[#f60] text-[#f60]' : 'text-gray-600'}`}
+            >
+              Tin Nổi Bật
+            </button>
+          </div>
+          {tabs[activeTab]}
+        </div>
+      );
+    };
+
+    // Component App chính
+    const App = () => (
+      <div className="flex flex-col h-screen">
+        <Header />
+        <div className="flex flex-1 overflow-hidden">
+          <Sidebar />
+          <MainContent />
+        </div>
+      </div>
+    );
+
+    // Render ứng dụng và thêm biểu đồ
+    ReactDOM.render(<App />, document.getElementById('root'));
+    const ctx = document.getElementById('chart').getContext('2d');
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Th6 1', 'Th6 2', 'Th6 3', 'Th6 4', 'Th6 5'],
+        datasets: [{
+          label: 'Doanh Thu',
+          data: [0, 1000, 500, 2000, 1500],
+          borderColor: '#f60',
+          tension: 0.1
+        }]
+      },
+      options: {
+        scales: { y: { beginAtZero: true } }
+      }
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+</html>

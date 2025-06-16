@@ -1,0 +1,200 @@
+:root {
+  --shopee-orange: #ee4d2d; /* Màu cam đặc trưng của Shopee */
+  --shopee-orange-hover: #f53d2d; /* Màu cam khi hover */
+  --shopee-green: #00bfa5; /* Màu xanh vận chuyển */
+  --shopee-gray: #757575; /* Màu xám chữ phụ */
+  --shopee-gray-bg: #f5f5f5; /* Màu nền xám nhạt */
+  --shopee-orange-text: #ee4d2d; /* Màu chữ cam */
+}
+
+/* Định dạng chung */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.5;
+  background-color: var(--shopee-gray-bg);
+  color: #333;
+}
+
+/* Header */
+header.shopee-orange {
+  background-color: var(--shopee-orange);
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header a {
+  display: flex;
+  align-items: center;
+}
+
+header img {
+  height: 28px;
+}
+
+header h1.shopee-orange-text {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 72px; /* Để tránh bị header che */
+}
+
+/* Section chung */
+section {
+  background-color: #fff;
+  border-radius: 4px;
+  margin-top: 16px;
+  padding: 16px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Địa chỉ nhận hàng */
+section h2 {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+section .shopee-orange-text {
+  color: var(--shopee-orange);
+}
+
+section .shopee-orange-text:hover {
+  color: var(--shopee-orange-hover);
+}
+
+.shopee-default {
+  background-color: var(--shopee-gray-bg);
+  color: var(--shopee-gray);
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+}
+
+/* Sản phẩm */
+section .flex-3 {
+  flex: 3;
+}
+
+section .flex-1 {
+  flex: 1;
+}
+
+section .shopee-gray {
+  color: var(--shopee-gray);
+}
+
+section .shopee-gray-bg {
+  background-color: var(--shopee-gray-bg);
+}
+
+section .bg-shopee-orange {
+  background-color: var(--shopee-orange);
+}
+
+section img {
+  border-radius: 4px;
+}
+
+section input {
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 8px;
+  font-size: 12px;
+  width: 100%;
+  outline: none;
+}
+
+section input:focus {
+  border-color: var(--shopee-orange);
+  box-shadow: 0 0 0 2px rgba(238, 77, 45, 0.2);
+}
+
+/* Phương thức vận chuyển */
+.shopee-green {
+  color: var(--shopee-green);
+}
+
+/* Nút đặt hàng */
+.shopee-checkout-btn {
+  background-color: var(--shopee-orange);
+  color: #fff;
+  padding: 12px 40px;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.shopee-checkout-btn:hover {
+  background-color: var(--shopee-orange-hover);
+}
+
+/* Hiệu ứng loading cho nút */
+.shopee-checkout-btn.loading::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #fff;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* Shopee Xu */
+.accent-shopee-orange {
+  accent-color: var(--shopee-orange);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  header h1 {
+    font-size: 16px;
+  }
+
+  section h2 {
+    font-size: 13px;
+  }
+
+  section .text-sm {
+    font-size: 12px;
+  }
+
+  section .text-xs {
+    font-size: 11px;
+  }
+
+  .shopee-checkout-btn {
+    width: 100%;
+    padding: 12px;
+  }
+}

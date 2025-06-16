@@ -1,0 +1,31 @@
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f5f5f5;
+    }
+    .shopee-btn {
+      background: linear-gradient(180deg, #f60, #f60);
+      border: none;
+      color: white;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .shopee-btn:hover {
+      background: linear-gradient(180deg, #e65b00, #e65b00);
+    }
+    .sidebar-item {
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+    }
+    .sidebar-item:hover {
+      background-color: #f0f0f0;
+      color: #f60;
+    }
+    .sidebar-item i {
+      margin-right: 8px;
+    }
+    .stats-card {
+      border: 1px solid #e0e0e0;
+      border-left: 4px solid #f60;
+    }
